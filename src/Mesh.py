@@ -12,29 +12,21 @@ class Mesh:
         Mesh constructor
         :param path: str, path to *.inp file
         """
-        self._mesh = meshio.read(path)
 
-    def get_node_location_list(self) -> list:
-        """
-        returns a list of node locations in 3D space
-        :return: list, node location list
-        """
-        return self._mesh.points
+        # load in raw mesh from *.inp file
+        raw_mesh = meshio.read(path)
 
-    def get_connectivity_list(self) -> list:
-        """
-        returns the connectivity dictionary for all elements, assumes all elements are part of a single block with an
-        arbitrary name
-        :return: list, connectivity list
-        """
-        return list(self._mesh.cells_dict.values())[0]
+        # assign attributes
+        self.node_location_list = raw_mesh.points
+        self.connectivity_list = list(raw_mesh.cells_dict.values())[0] #
+        self.boundary_nodes = {node_idx for boundary_list in raw_mesh.point_sets.values() for node_idx in boundary_list}
 
-    def get_boundary_node_dict(self) -> dict:
+    def __repr__(self) -> str:
         """
-        returns a dictionary of all node sets which are assumed to be boundaries
-        :return: dict, boundary node dictionary
+        changes object string representation
+        :return:
         """
-        return self._mesh.point_sets
+        return f"{self.__dict__}"
 
     def is_on_boundary(self, node_idx: int) -> bool:
         """
@@ -42,12 +34,7 @@ class Mesh:
         :param node_idx:
         :return: bool, True if node exists on a boundary and False if not
         """
-        boundary_node_dict = self.get_boundary_node_dict()
-
-        return any(
-            node_idx in boundary_node_list
-            for boundary_node_list in boundary_node_dict.values()
-        )
+        return node_idx in self.boundary_nodes
 
     def distance_between_nodes(self, node_1_idx: int, node_2_idx: int) -> float:
         """
@@ -56,9 +43,8 @@ class Mesh:
         :param node_2_idx: int, global node index 2
         :return: float, distance between nodes 1 and 2
         """
-        node_location_list = self.get_node_location_list()
 
-        node_1_loc = node_location_list[node_1_idx]
-        node_2_loc = node_location_list[node_2_idx]
+        node_1_loc = self.node_location_list[node_1_idx]
+        node_2_loc = self.node_location_list[node_2_idx]
 
         return np.linalg.norm(node_1_loc - node_2_loc)
