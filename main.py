@@ -7,7 +7,7 @@ def main() -> None:
     :returns None
     """
     mesh = Mesh("./mesh.inp")
-    print(mesh.is_on_boundary())
+    print(mesh.distance_between_nodes(0,1))
 
 
 if __name__ == "__main__":
