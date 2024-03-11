@@ -1,7 +1,7 @@
 from src.Mesh import Mesh
 
 
-def main():
+def main() -> None:
     """
     main simulation driver function
     :returns None
