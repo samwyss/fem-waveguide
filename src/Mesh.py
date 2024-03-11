@@ -54,7 +54,7 @@ class Mesh:
         determines the distance between any two nodes using global node indexes
         :param node_1_idx: int, global node index 1
         :param node_2_idx: int, global node index 2
-        :return:
+        :return: float, distance between nodes 1 and 2
         """
         node_location_list = self.get_node_location_list()
 

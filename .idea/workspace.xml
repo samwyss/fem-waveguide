@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59dce834-27ce-4a5d-802f-6a1959fcb7eb" name="Changes" comment="added .gitignore">
-      <change afterPath="$PROJECT_DIR$/src/Mesh.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/fem_waveguide.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/fem_waveguide.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    <list default="true" id="59dce834-27ce-4a5d-802f-6a1959fcb7eb" name="Changes" comment="added type annotations to main">
+      <change beforePath="$PROJECT_DIR$/src/Mesh.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mesh.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +93,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1710166025298</updated>
-      <workItem from="1710166027612" duration="5545000" />
+      <workItem from="1710166027612" duration="5722000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -115,7 +111,31 @@
       <option name="project" value="LOCAL" />
       <updated>1710166145657</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added basic mesh for testing">
+      <option name="closed" value="true" />
+      <created>1710171927861</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1710171927861</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added mesh class">
+      <option name="closed" value="true" />
+      <created>1710171935031</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1710171935031</updated>
+    </task>
+    <task id="LOCAL-00005" summary="added type annotations to main">
+      <option name="closed" value="true" />
+      <created>1710171963980</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1710171963980</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -124,9 +144,12 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
     <MESSAGE value="added .gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="added .gitignore" />
+    <MESSAGE value="added basic mesh for testing" />
+    <MESSAGE value="added mesh class" />
+    <MESSAGE value="added type annotations to main" />
+    <option name="LAST_COMMIT_MESSAGE" value="added type annotations to main" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/fem_waveguide$main.coverage" NAME="main Coverage Results" MODIFIED="1710171741865" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/fem_waveguide$main.coverage" NAME="main Coverage Results" MODIFIED="1710171868149" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
