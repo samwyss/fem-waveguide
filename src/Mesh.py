@@ -26,6 +26,7 @@ class Mesh:
         changes object string representation
         :return:
         """
+
         return f"{self.__dict__}"
 
     def is_on_boundary(self, node_idx: int) -> bool:
@@ -34,6 +35,7 @@ class Mesh:
         :param node_idx:
         :return: bool, True if node exists on a boundary and False if not
         """
+
         return node_idx in self.boundary_nodes
 
     def distance_between_nodes(self, node_1_idx: int, node_2_idx: int) -> float:
@@ -44,7 +46,4 @@ class Mesh:
         :return: float, distance between nodes 1 and 2
         """
 
-        node_1_loc = self.node_location_list[node_1_idx]
-        node_2_loc = self.node_location_list[node_2_idx]
-
-        return np.linalg.norm(node_1_loc - node_2_loc)
+        return np.linalg.norm(self.node_location_list[node_1_idx] - self.node_location_list[node_2_idx])

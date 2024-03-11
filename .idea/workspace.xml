@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59dce834-27ce-4a5d-802f-6a1959fcb7eb" name="Changes" comment="added type annotations to main">
-      <change beforePath="$PROJECT_DIR$/.idea/fem_waveguide.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/fem_waveguide.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="59dce834-27ce-4a5d-802f-6a1959fcb7eb" name="Changes" comment="simplified Mesh">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Mesh.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mesh.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +96,7 @@
       <updated>1710166025298</updated>
       <workItem from="1710166027612" duration="5722000" />
       <workItem from="1710172645929" duration="209000" />
-      <workItem from="1710176062466" duration="941000" />
+      <workItem from="1710176062466" duration="1158000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -141,7 +138,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710171963980</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="simplified Mesh">
+      <option name="closed" value="true" />
+      <created>1710177025812</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1710177025812</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,7 +169,8 @@
     <MESSAGE value="added basic mesh for testing" />
     <MESSAGE value="added mesh class" />
     <MESSAGE value="added type annotations to main" />
-    <option name="LAST_COMMIT_MESSAGE" value="added type annotations to main" />
+    <MESSAGE value="simplified Mesh" />
+    <option name="LAST_COMMIT_MESSAGE" value="simplified Mesh" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/fem_waveguide$main.coverage" NAME="main Coverage Results" MODIFIED="1710176819378" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
