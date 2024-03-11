@@ -19,7 +19,7 @@ class Mesh:
         # assign attributes
         self.node_location_list = raw_mesh.points
         self.connectivity_list = list(raw_mesh.cells_dict.values())[0] #
-        self.boundary_nodes = {node_idx for boundary_list in raw_mesh.point_sets.values() for node_idx in boundary_list}
+        self.boundary_node_set = {node_idx for boundary_list in raw_mesh.point_sets.values() for node_idx in boundary_list}
 
     def __repr__(self) -> str:
         """
@@ -36,7 +36,7 @@ class Mesh:
         :return: bool, True if node exists on a boundary and False if not
         """
 
-        return node_idx in self.boundary_nodes
+        return node_idx in self.boundary_node_set
 
     def distance_between_nodes(self, node_1_idx: int, node_2_idx: int) -> float:
         """
