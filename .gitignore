@@ -158,3 +158,27 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+
+# LaTeX auxiliary files
+*.aux
+*.log
+*.out
+*.synctex.gz
+
+# Bibliography files
+*.bbl
+*.bcf
+*.blg
+
+# Generated files
+*.dvi
+*.ps
+
+# Other files
+*.fdb_latexmk
+*.fls
+*.gz
+*.toc
+
+# data output folders from model
+out/
