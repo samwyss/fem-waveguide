@@ -1,5 +1,16 @@
 \section{Introduction}
 \label{sec:intro}
+
+Waveguides are used in a plethora of applications ranging from transmitting microwave fields to acting as passive low-pass filters \cite{pozar2011microwave}. While any cross section of a single conductor waveguide can support TE and TM modes, rectangular and circular cross sections are commonly chosen due to their ease of construction and analytic propagation characteristics. However, a limitation of rectangular waveguides is the limited bandwidth of their dominant mode which is less than an octave \cite{pozar2011microwave}. By adding a single or double ridge to the mouth of a waveguide, the cutoff frequency of the dominant mode can be reduced thus allowing for increased signal bandwidth \cite{pozar2011microwave}. This increased bandwidth comes at the cost of reduced power capacity due to the reduction in breakdown potential between the ridges \cite{pozar2011microwave} making them less ideal for High Power Microwave (HPM) devices.  
+
+Finite element description, applicability of FEM
+
+
+
+Description of paper with explicit secton references
+
+
+
 Rectangular cavity resonators are used in a variety of applications ranging from filters to microwave energy storage devices \cite{pozar2011microwave}. Furthermore, rectangular cavity resonators are popular due to their simplistic design which can easily be constructed by placing shorting planes on the wave ports, thereby limiting energy loss to dielectric and wall surface conductivity\cite{pozar2011microwave}. This simplistic design allows for precise control of the unloaded quality factor (Q) and resonance frequency of these resonators by simply changing material properties and cavity length for example.
 
 All wave phenomenon in waveguides and cavity resonators for a given frequency are derivable analytically from Maxwell's Equations. Maxwell's Equations, namely Faraday's and Amp\`{e}re's laws, can describe nearly all wave interactions in electromagnetics to a level of precision that few areas in physics can match \cite{rothlecnotes}. In 1966, Kane S. Yee proposed a temporally and spatially staggered grid which could be used to explicitly solve Maxwell's Equations using finite differences in the time domain \cite{yee}. The staggered Yee grid positions the electric and magnetic fields on the edges of spatially offset voxels at half integer time-steps\cite{yee}. This method resolved many of the erroneous solutions from previous finite-difference solutions as it constructs fields able to be integrated over a line\cite{rothlecnotes} much like the integral form of Maxwell's Equations.
