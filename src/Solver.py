@@ -1,8 +1,8 @@
-from xml.sax.handler import feature_validation
 from src.Mesh import Mesh
-from numpy import zeros, nonzero, sort, where, in1d, array
+from numpy import zeros, nonzero, sort, where, in1d, array, absolute, savetxt
 from scipy.linalg import eig, eigvals
 import matplotlib.pyplot as plt
+from numpy.linalg import norm
 
 
 class Solver:
@@ -17,6 +17,7 @@ class Solver:
         """
         self.mesh = mesh
         self.assemble_te_matrices()
+        self.assemble_tm_matrices()
 
     def assemble_te_matrices(self):
         # determine the number of elements (excluding elements on the boundary as they are not included in TM problem)
@@ -54,12 +55,65 @@ class Solver:
                         / 12
                     )
 
-                    # assign on object
-                    self.a_te = a_te
-                    self.b_te = b_te
+        # assign on object
+        self.a_te = a_te
+        self.b_te = b_te
 
     def assemble_tm_matrices(self):
-        pass
+        # determine the number of elements (excluding elements on the boundary as they are not included in TM problem)
+        num_els = len(self.mesh.connectivity_list) - len(self.mesh.boundary_node_set)
+
+        a_tm = zeros((num_els, num_els))
+        b_tm = zeros((num_els, num_els))
+
+        i_corr = 0 
+        j_corr = 0
+
+        # assemble matrices
+        for global_element_idx, _ in enumerate(self.mesh.connectivity_list):
+            for l_idx in range(3):
+                for k_idx in range(3):
+                    # determine i, j node numbers as indices in matrices
+                    i_gl_idx = self.mesh.connectivity_list[global_element_idx][l_idx]
+                    j_gl_idx = self.mesh.connectivity_list[global_element_idx][k_idx]
+
+                    if (self.mesh.is_on_boundary(j_gl_idx) or self.mesh.is_on_boundary(i_gl_idx)):
+                        if self.mesh.is_on_boundary(j_gl_idx) and self.mesh.is_on_boundary(i_gl_idx) :
+                            i_corr += 1
+                            j_corr += 1
+                        if self.mesh.is_on_boundary(
+                            j_gl_idx
+                        ) and not self.mesh.is_on_boundary(i_gl_idx):
+                            j_corr += 1
+                        else:
+                            i_corr += 1
+                    else:
+                        i_gl_idx = self.mesh.connectivity_list[global_element_idx][l_idx] - i_corr
+                        j_gl_idx = self.mesh.connectivity_list[global_element_idx][k_idx] - j_corr
+                        # delta function contribution
+                        equal_term = 1 if l_idx == k_idx else 0
+
+                        # accumulate values in matrices
+                        a_tm[i_gl_idx, j_gl_idx] += (
+                            1
+                            / (4 * self.calc_element_area(global_element_idx))
+                            * (
+                                self.calc_b_node(global_element_idx, l_idx)
+                                * self.calc_b_node(global_element_idx, k_idx)
+                                + self.calc_c_node(global_element_idx, l_idx)
+                                * self.calc_c_node(global_element_idx, k_idx)
+                            )
+                        )
+
+                        b_tm[i_gl_idx, j_gl_idx] += (
+                            self.calc_element_area(global_element_idx)
+                            * (1 + equal_term)
+                            / 12
+                        )
+
+        # assign on object
+        self.a_tm = a_tm
+        self.b_tm = b_tm
 
     def calc_a_node(self, global_element_num: int, local_node_idx: int) -> int:
 
@@ -125,12 +179,22 @@ class Solver:
         )
 
     def solve_eig_probs(self):
+        """
         (eig_values, eig_vecs) = eig(self.a_te, self.b_te)
 
-        first_eigs = sort(eig_values[eig_values > 0])[0:4]
+        first_eigs = sort(eig_values[absolute(eig_values) > 0])[:5]
 
-        print(f"First 4 Eigenvalues: {first_eigs}")
+        print(f"First 5 Eigenvalues TE: {first_eigs}")
+        """
 
+        (eig_values, eig_vecs) = eig(self.a_tm, self.b_tm)
+
+        first_eigs = sort(eig_values[absolute(eig_values) > 0])[:5]
+
+        print(f"First 5 Eigenvalues TM: {first_eigs}")
+        print(max(eig_values))
+
+        """
         # determine indices
         idxs = where(in1d(eig_values, first_eigs))
         print(idxs)
@@ -141,12 +205,12 @@ class Solver:
         fields = array(eig_vecs)
 
         # make plots
-
-        print(len(fields[80,:]))
-        print(len(connectivity))
-
-        plt.tripcolor(locations[:, 0], locations[:, 1], connectivity, facecolors=fields[82, :], vmax = 0.1, vmin = -0.1, cmap="coolwarm")
+        plt.tripcolor(
+            locations[:, 0],
+            locations[:, 1],
+            connectivity,
+            facecolors=fields[:, 89],
+            cmap="coolwarm",
+        )
         plt.show()
-
-        print(len(locations[:, 0]))
-        print(len(fields[80, :]))
+        """
