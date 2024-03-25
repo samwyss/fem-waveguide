@@ -100,7 +100,8 @@ With definitions (\ref{eq:elementinterp}-\ref{eq:coefficients}) an arbitrary fie
 	\phi=\sum_{j=1}^{N}N_j\phi_j\sum_{j=1}^{N}N_j^D\phi_j^D
 \end{align}
 
-With the discretization of a generic field outlined, The weak forms of (\ref{eq:tm_helmholtz}-\ref{eq:te_helmholtz}) will now be derived in parallel.
+With the discretization of a generic field outlined, The Galerkin weak forms of (\ref{eq:tm_helmholtz}-\ref{eq:te_helmholtz}) will now be derived in parallel. We begin by multiplying (\ref{eq:tm_helmholtz}-\ref{eq:te_helmholtz}) by a weighting function which is identical to that of an interpolating funcion for the Galerkin procedure. The resulting weak forms are
+
 
 \subsubsection{Finite Element Matrix Assembly}
 \label{subsub:mat_assembly}
