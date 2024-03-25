@@ -65,7 +65,42 @@ for the TE mode where $\partial\Omega$ denotes the PEC surface surrounding the w
 
 \subsubsection{Galerkin Weak Formulation}
 \label{subsub:galerkin_weak}
+With the governing equations established, we can now proceed with the discretization of an arbitrarily shaped waveguide to solve for both the transverse electric and magnetic fields. Using FEM, we break these 2D waveguide slices into a finite set of finitely sized elements and approximate the solution of (\ref{eq:tm_helmholtz}-\ref{eq:te_helmholtz}) over each element. Triangular elements are chosen as they can be meshed together to form the boundaries of arbitrarily curved shapes well making them ideal for modeling geometries with no analytic solutions \cite{jin2011theory}. Linearly interpolating functions are used to approximate the solution of (\ref{eq:tm_helmholtz}-\ref{eq:te_helmholtz}) at the nodes of each element. Linear interpolating functions are chosen for their overall simplicity and adequate accuracy for the determination of waveguide parameters \cite{rothlecnotes}\cite{jin2011theory}. 
 
+For an arbitrary triangular element, an generic scalar field $\phi$ can be Linearly interpolated over using
+\begin{align}
+	\phi^{(e)}(x,y)=a+bx+cy
+	\label{eq:basic-el-interp}
+\end{align} 
+where $(e)$ refers to a specific element, $a$, $b$, $c$ are scaling constants and $x$, $y$ are the coordinates of the location within the node \cite{jin2011theory}. This interpolation scheme can now be applied to find the field value at an arbitrary vertex on the element as
+\begin{align}
+	\phi^{(e)}_l=a+bx_l+cy_l
+	\label{eq:node-interp}
+\end{align}
+where $x$, $y$ are the coordinates of the node \cite{jin2011theory}. These nodal field expressions can now be combined to rewrite (\ref{eq:basic-el-interp}) in terms of the field value calculated at each node as
+\begin{multline}
+	\phi^{(e)}(x,y)=N_1^{(e)}(x,y)\phi^{(e)}_1\\+N_2^{(e)}(x,y)\phi^{(e)}_2+N_3^{(e)}(x,y)\phi^{(e)}_3
+	\label{eq:elementinterp}
+\end{multline} with an arbitrary interpolating function $N_l^{(e)}$ given by 
+\begin{align}
+	N_l^{(e)}(x,y)=\frac{1}{2\Delta^{(e)}}\left(a_l^{(e)}+b_l^{(e)}x+c_l^{(e)}y\right)
+\end{align}
+where $\Delta^{(e)}$ is the area of element $e$ and $a_l^{(e)}$, $b_l^{(e)}$, $c_l^{(e)}$ are given by the following as in \cite{jin2011theory}
+\begin{multline}
+	\quad \ \ \ a_1^{e} = x^{e}_2y^{e}_3-x^{e}_3y^{e}_2,b_1^{e}=y^{e}_2-y^{e}_3, c_1^{e}=x^{e}_3-y^{e}_2
+	\\
+	a_2^{e} = x^{e}_3y^{e}_1-x^{e}_1y^{e}_3,b_2^{e}=y^{e}_3-y^{e}_1, c_2^{e}=x^{e}_1-y^{e}_3
+	\\
+	a_3^{e} = x^{e}_1y^{e}_2-x^{e}_2y^{e}_1,b_3^{e}=y^{e}_1-y^{e}_2, c_3^{e}=x^{e}_2-y^{e}_1.
+	\label{eq:coefficients}
+\end{multline}
+
+With definitions (\ref{eq:elementinterp}-\ref{eq:coefficients}) an arbitrary field with potential Dirichlet boundary conditions (noted by $D$) can be expressed as the superposition of all fields at each node as 
+\begin{align}
+	\phi=\sum_{j=1}^{N}N_j\phi_j\sum_{j=1}^{N}N_j^D\phi_j^D
+\end{align}
+
+With the discretization of a generic field outlined, The weak forms of (\ref{eq:tm_helmholtz}-\ref{eq:te_helmholtz}) will now be derived in parallel.
 
 \subsubsection{Finite Element Matrix Assembly}
 \label{subsub:mat_assembly}
