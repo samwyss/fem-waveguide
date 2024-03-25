@@ -19,7 +19,7 @@ areas = zeros(num_elements, 1);
 A = zeros(num_elements, num_elements);
 B = zeros(num_elements, num_elements);
 
-% precalculate values
+%precalculate values
 for i=1:num_elements
     % get coordinates of nodes
     coords = get_coordinates(i, connectivity, node_locations);
@@ -34,7 +34,7 @@ for i=1:num_elements
     areas(i) = 0.5 * (bs(i, 1) * cs(i, 2) - bs(i, 2) * cs(i, 1));
 end
 
-% TE mode assembly
+%TE mode assembly
 for element=1:num_elements
     for l_idx=1:3
         for k_idx=1:3
