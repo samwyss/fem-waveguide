@@ -66,9 +66,6 @@ class Solver:
         a_tm = zeros((num_els, num_els))
         b_tm = zeros((num_els, num_els))
 
-        i_corr = 0 
-        j_corr = 0
-
         # assemble matrices
         for global_element_idx, _ in enumerate(self.mesh.connectivity_list):
             for l_idx in range(3):
@@ -78,18 +75,10 @@ class Solver:
                     j_gl_idx = self.mesh.connectivity_list[global_element_idx][k_idx]
 
                     if (self.mesh.is_on_boundary(j_gl_idx) or self.mesh.is_on_boundary(i_gl_idx)):
-                        if self.mesh.is_on_boundary(j_gl_idx) and self.mesh.is_on_boundary(i_gl_idx) :
-                            i_corr += 1
-                            j_corr += 1
-                        if self.mesh.is_on_boundary(
-                            j_gl_idx
-                        ) and not self.mesh.is_on_boundary(i_gl_idx):
-                            j_corr += 1
-                        else:
-                            i_corr += 1
+                        pass
                     else:
-                        i_gl_idx = self.mesh.connectivity_list[global_element_idx][l_idx] - i_corr
-                        j_gl_idx = self.mesh.connectivity_list[global_element_idx][k_idx] - j_corr
+                        i_gl_idx = self.mesh.connectivity_list[global_element_idx][l_idx] - sum(i < i_gl_idx for i in self.mesh.boundary_node_set)
+                        j_gl_idx = self.mesh.connectivity_list[global_element_idx][k_idx] - sum(i < j_gl_idx for i in self.mesh.boundary_node_set)
                         # delta function contribution
                         equal_term = 1 if l_idx == k_idx else 0
 
@@ -179,38 +168,8 @@ class Solver:
         )
 
     def solve_eig_probs(self):
-        """
-        (eig_values, eig_vecs) = eig(self.a_te, self.b_te)
 
-        first_eigs = sort(eig_values[absolute(eig_values) > 0])[:5]
+        (eig_values_TE, eig_vecs_TE) = eig(self.a_te, self.b_te)
+        (eig_values_TM, eig_vecs_TM) = eig(self.a_tm, self.b_tm)
 
-        print(f"First 5 Eigenvalues TE: {first_eigs}")
-        """
-
-        (eig_values, eig_vecs) = eig(self.a_tm, self.b_tm)
-
-        first_eigs = sort(eig_values[absolute(eig_values) > 0])[:5]
-
-        print(f"First 5 Eigenvalues TM: {first_eigs}")
-        print(max(eig_values))
-
-        """
-        # determine indices
-        idxs = where(in1d(eig_values, first_eigs))
-        print(idxs)
-
-        # convert locations and eigenvectors to numpy arrays to make them usable
-        locations = array(self.mesh.node_location_list)
-        connectivity = array(self.mesh.connectivity_list)
-        fields = array(eig_vecs)
-
-        # make plots
-        plt.tripcolor(
-            locations[:, 0],
-            locations[:, 1],
-            connectivity,
-            facecolors=fields[:, 89],
-            cmap="coolwarm",
-        )
-        plt.show()
-        """
+        return (eig_values_TE, eig_vecs_TE, eig_values_TM, eig_vecs_TM)

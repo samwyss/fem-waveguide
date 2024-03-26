@@ -65,7 +65,7 @@ writematrix(eig_val_sort(1:10), "rectangular_TE_eigenvalues.csv");
 test_vals = eigenvectors(:, idx(1:10));
 writematrix(eigenvectors(:, idx(1:10)), "rectangular_TE_eigenvectors.csv")
 
-patch('Faces', connectivity(:, 2:end), 'Vertices', node_locations(:, 2:end), 'FaceVertexCData', eigenvectors(:, idx(2)), 'FaceColor', 'flat');
+patch('Faces', connectivity[2:end], 'Vertices', node_locations[2:end], 'FaceVertexCData', eigenvectors(:, idx(2), 'FaceColor', 'flat');
 
 %% helper functions
 
