@@ -21,10 +21,10 @@ class Solver:
 
     def assemble_te_matrices(self):
         # determine the number of elements (excluding elements on the boundary as they are not included in TM problem)
-        num_els = len(self.mesh.connectivity_list)
+        num_nodes = len(self.mesh.node_location_list)
 
-        a_te = zeros((num_els, num_els))
-        b_te = zeros((num_els, num_els))
+        a_te = zeros((num_nodes, num_nodes))
+        b_te = zeros((num_nodes, num_nodes))
 
         # assemble matrices
         for global_element_idx, _ in enumerate(self.mesh.connectivity_list):
@@ -61,10 +61,10 @@ class Solver:
 
     def assemble_tm_matrices(self):
         # determine the number of elements (excluding elements on the boundary as they are not included in TM problem)
-        num_els = len(self.mesh.connectivity_list) - len(self.mesh.boundary_node_set)
+        num_nodes = len(self.mesh.node_location_list) - len(self.mesh.boundary_node_set)
 
-        a_tm = zeros((num_els, num_els))
-        b_tm = zeros((num_els, num_els))
+        a_tm = zeros((num_nodes, num_nodes))
+        b_tm = zeros((num_nodes, num_nodes))
 
         # assemble matrices
         for global_element_idx, _ in enumerate(self.mesh.connectivity_list):
