@@ -4,7 +4,7 @@ With the mathematical model now fully established we now proceed to discus the i
 
 \subsection{Implementation}
 \label{subsec:impl}
-All meshes used in the following sections were generated using Coreform Cubit \cite{cubit} with a tutorial provided by \cite{rothlecnotes}. For the rectangular waveguide found in \ref{subsec:vv}, a WR-90, X-band waveguide with $a=0.02286$m and $b=0.01016$m was used \cite{everythingrf}. For the circular waveguide used in \ref{subsec:circ_guides}, a similarly sized circular waveguide of $r=0.01$m was used. In order to compare the non-ridged to the ridged waveguide the same WR-90, X-band waveguide was used in Section \ref{subsec:rid_guides} as in Section \ref{subsec:vv} however with two $0.0025\times0.0025$m notches cut out along the long edge. Example meshes of the later two geometries can be found in Figures \ref{fig:circular_guide}-\ref{fig:ridged_guide}. These meshes were generated using Coreform Cubit's \verb|TriAdvance| algorithm all containing $\approx2000$ elements which is appropriate for the applications studied here. Coreform Cubit's \verb|nodeset| feature was used to create a set of all nodes on the boundaries of these geometries. This allows for $O(1)$ lookups of elements on the boundary which was utilized heavily when performing TE mode analysis. These meshes were saved into the ANSYS \verb|.inp| ASCII format which was chosen as it is human readable which was invaluable during the development of this code.
+All meshes used in the following sections were generated using Coreform Cubit \cite{cubit} with a tutorial provided by \cite{rothlecnotes}. For the rectangular waveguide found in \ref{subsec:vv}, a WR-90, X-band waveguide with $a=0.02286$m and $b=0.01016$m was used \cite{everythingrf}. For the circular waveguide used in \ref{subsec:circ_guides}, a similarly sized circular waveguide of radius $r=0.01$m was used. In order to compare the non-ridged to the ridged waveguide the same WR-90, X-band waveguide was used in Section \ref{subsec:rid_guides} as in Section \ref{subsec:vv} however with two $0.0025\times0.0025$m notches cut out along the long edge. Example meshes of the later two geometries can be found in Figures \ref{fig:circular_guide}-\ref{fig:ridged_guide}. These meshes were generated using Coreform Cubit's \verb|TriAdvance| algorithm all containing $\approx2000$ elements which is appropriate for the applications studied here. Coreform Cubit's \verb|nodeset| feature was used to create a set of all nodes on the boundaries of these geometries. This allows for $O(1)$ lookups of elements on the boundary which was utilized heavily when performing TE mode analysis. These meshes were saved into the ANSYS \verb|.inp| ASCII format which was chosen as it is human readable which was invaluable during the development of this code.
 
 \begin{figure}[h!]  
 	\centering
@@ -57,7 +57,7 @@ As seen in Fig. \ref{fig:rect_disp}, the dispersion relations predicted by the i
 
 \subsection{Circular Waveguides}
 \label{subsec:circ_guides}
-With the model successfully validated against the analytic results of a rectangular waveguide, we now move to assess a circular waveguide of radius 
+With the model successfully validated against the analytic results of a rectangular waveguide, we now move to assess a circular waveguide of radius $r=0.01$m. 
 
 \subsection{Comparison of Ridged and Non-Ridged Waveguides}
 \label{subsec:rid_guides}

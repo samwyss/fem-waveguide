@@ -28,7 +28,6 @@ def main() -> None:
     locations = np.array(mesh.node_location_list)
     connectivity = np.array(mesh.connectivity_list)
 
-    # make plots
     plt.rcParams["text.usetex"] = True
     plt.rcParams["figure.figsize"] = (4, 4)
     plt.rcParams["figure.dpi"] = 300
@@ -49,41 +48,105 @@ def main() -> None:
     tm21_th_kc = np.sqrt((2 * np.pi / a) ** 2 + (np.pi / b) ** 2)
     tm31_th_kc = np.sqrt((3 * np.pi / a) ** 2 + (1 * np.pi / b) ** 2)
 
-    """
-    plt.plot(k0_th_a, np.sqrt((2*np.pi*frequencies_th)**2 * mu * epsilon - te10_th_kc) / k0_th, "b")
-    plt.plot(k0_th_a, np.sqrt((2*np.pi*frequencies_th)**2 * mu * epsilon - te01_th_kc) / k0_th, "g")
-    plt.plot(k0_th_a, np.sqrt((2*np.pi*frequencies_th)**2 * mu * epsilon - te20_th_kc) / k0_th, "r")
-    plt.plot(k0_th_a, np.sqrt((2*np.pi*frequencies_th)**2 * mu * epsilon - tm11_th_kc) / k0_th, "c")
-    plt.plot(k0_th_a, np.sqrt((2*np.pi*frequencies_th)**2 * mu * epsilon - tm21_th_kc) / k0_th, "m")
-    plt.plot(k0_th_a, np.sqrt((2*np.pi*frequencies_th)**2 * mu * epsilon - tm31_th_kc) / k0_th, "y")
-    """
+    fig, ax = plt.subplots()
 
-    plt.plot(k0_s_a, np.sqrt((2*np.pi*frequencies_s)**2 * mu * epsilon - np.sqrt(first_eig_vals_TE[1])) / k0_s, "b1", label=r"$TE_{10}$")
-    plt.plot(k0_s_a, np.sqrt((2*np.pi*frequencies_s)**2 * mu * epsilon - np.sqrt(first_eig_vals_TE[2])) / k0_s, "r3", label=r"$TE_{01}$")
-    plt.plot(k0_s_a, np.sqrt((2*np.pi*frequencies_s)**2 * mu * epsilon - np.sqrt(first_eig_vals_TE[3])) / k0_s, "g2", label=r"$TE_{20}$")
+    fig.dpi = 300
+    fig.set_size_inches(4, 4)
 
-    plt.plot(k0_s_a, np.sqrt((2*np.pi*frequencies_s)**2 * mu * epsilon - np.sqrt(first_eig_vals_TM[0])) / k0_s, "c4", label=r"$TM_{11}$")
-    plt.plot(k0_s_a, np.sqrt((2*np.pi*frequencies_s)**2 * mu * epsilon - np.sqrt(first_eig_vals_TM[1])) / k0_s, "m+", label=r"$TM_{21}$")
-    plt.plot(k0_s_a, np.sqrt((2*np.pi*frequencies_s)**2 * mu * epsilon - np.sqrt(first_eig_vals_TM[2])) / k0_s, "yx", label=r"$TM_{31}$")
+    ax.plot(k0_th_a, np.sqrt((2*np.pi*frequencies_th)**2 * mu * epsilon - te10_th_kc) / k0_th, "b")
+    ax.plot(k0_th_a, np.sqrt((2*np.pi*frequencies_th)**2 * mu * epsilon - te01_th_kc) / k0_th, "g")
+    ax.plot(k0_th_a, np.sqrt((2*np.pi*frequencies_th)**2 * mu * epsilon - te20_th_kc) / k0_th, "r")
+    ax.plot(k0_th_a, np.sqrt((2*np.pi*frequencies_th)**2 * mu * epsilon - tm11_th_kc) / k0_th, "c")
+    ax.plot(k0_th_a, np.sqrt((2*np.pi*frequencies_th)**2 * mu * epsilon - tm21_th_kc) / k0_th, "m")
+    ax.plot(k0_th_a, np.sqrt((2*np.pi*frequencies_th)**2 * mu * epsilon - tm31_th_kc) / k0_th, "y")
 
-    plt.ylim((0, 1))
-    plt.xlabel(r"$k_0a$")
-    plt.ylabel(r"$k_z/k_0$")
+    ax.plot(k0_s_a, np.sqrt((2*np.pi*frequencies_s)**2 * mu * epsilon - np.sqrt(first_eig_vals_TE[1])) / k0_s, "b1", label=r"$TE_{10}$")
+    ax.plot(k0_s_a, np.sqrt((2*np.pi*frequencies_s)**2 * mu * epsilon - np.sqrt(first_eig_vals_TE[2])) / k0_s, "r3", label=r"$TE_{01}$")
+    ax.plot(k0_s_a, np.sqrt((2*np.pi*frequencies_s)**2 * mu * epsilon - np.sqrt(first_eig_vals_TE[3])) / k0_s, "g2", label=r"$TE_{20}$")
 
-    plt.legend(loc="lower right", frameon=False)
+    ax.plot(
+        k0_s_a,
+        np.sqrt(
+            (2 * np.pi * frequencies_s) ** 2 * mu * epsilon
+            - np.sqrt(first_eig_vals_TM[0])
+        )
+        / k0_s,
+        "c4",
+        label=r"$TM_{11}$",
+    )
+    ax.plot(
+        k0_s_a,
+        np.sqrt(
+            (2 * np.pi * frequencies_s) ** 2 * mu * epsilon
+            - np.sqrt(first_eig_vals_TM[1])
+        )
+        / k0_s,
+        "m+",
+        label=r"$TM_{21}$",
+    )
+    ax.plot(
+        k0_s_a,
+        np.sqrt(
+            (2 * np.pi * frequencies_s) ** 2 * mu * epsilon
+            - np.sqrt(first_eig_vals_TM[2])
+        )
+        / k0_s,
+        "yx",
+        label=r"$TM_{31}$",
+    )
+
+    ax.set_ylim((0, 1))
+    ax.set_xlabel(r"$k_0a$")
+    ax.set_ylabel(r"$k_z/k_0$")
+
+    ax.legend(loc="lower right", frameon=False)
+
+    plt.minorticks_on()
+    ax.tick_params(
+        which="both",
+        axis="both",
+        top=True,
+        right=True,
+        labeltop=False,
+        labelright=False,
+    )
 
     plt.show()
 
-    plt.tripcolor(
-        locations[:, 0],
-        locations[:, 1],
-        np.real(eig_vec_TE[:, 116]),
-        cmap="coolwarm",
+    # make plots
+    fig, ax = plt.subplots()
+
+    fig.dpi = 300
+    fig.set_size_inches(6, 3.5)
+
+    ax.set_xlabel(r"$\hat{x}$-Position [m]")
+    ax.set_ylabel(r"$\hat{y}$-Position [m]")
+    plt.minorticks_on()
+    ax.tick_params(
+        which="both",
+        axis="both",
+        top=True,
+        right=True,
+        labeltop=False,
+        labelright=False,
     )
 
-    square1 = plt.Rectangle((-0.0025/2,-b/2), 0.0025, 0.0025, color="white", fill=True)
+    img = ax.tripcolor(
+        locations[:, 0],
+        locations[:, 1],
+        np.real(eig_vec_TE[:, 119]),
+        cmap="coolwarm",
+    )
+    cbar = fig.colorbar(img, orientation="horizontal", pad=0.2)
+    cbar.set_label(r"$H_z$ [A/m]")
+
+    square1 = plt.Rectangle(
+        (-0.0025 / 2, -b / 2), 0.0025, 0.0025, color="white", fill=True
+    )
     plt.gca().add_patch(square1)
-    square2 = plt.Rectangle((-0.0025/2,b/4+0.00001), 0.0025, 0.0025, color="white", fill=True)
+    square2 = plt.Rectangle(
+        (-0.0025 / 2, b / 4 + 0.00001), 0.0025, 0.0025, color="white", fill=True
+    )
     plt.gca().add_patch(square2)
 
     plt.show()
