@@ -4,7 +4,7 @@ With the mathematical model now fully established we now proceed to discus the i
 
 \subsection{Implementation}
 \label{subsec:impl}
-All meshes used in the following sections were generated using Coreform Cubit \cite{cubit} with a tutorial provided by \cite{rothlecnotes}. For the rectangular waveguide found in \ref{subsec:vv}, a WR-90, X-band waveguide with $a=0.02286$m and $b=0.01016$m was used \cite{everythingrf}. For the circular waveguide used in \ref{subsec:circ_guides}, a similarly sized circular waveguide of radius $r=0.01$m was used. In order to compare the non-ridged to the ridged waveguide the same WR-90, X-band waveguide was used in Section \ref{subsec:rid_guides} as in Section \ref{subsec:vv} however with two $0.0025\times0.0025$m notches cut out along the long edge. Example meshes of the later two geometries can be found in Figures \ref{fig:circular_guide}-\ref{fig:ridged_guide}. These meshes were generated using Coreform Cubit's \verb|TriAdvance| algorithm all containing $\approx2000$ elements which is appropriate for the applications studied here. Coreform Cubit's \verb|nodeset| feature was used to create a set of all nodes on the boundaries of these geometries. This allows for $O(1)$ lookups of elements on the boundary which was utilized heavily when performing TE mode analysis. These meshes were saved into the ANSYS \verb|.inp| ASCII format which was chosen as it is human readable which was invaluable during the development of this code.
+All meshes used in the following sections were generated using Coreform Cubit \cite{cubit} with a tutorial provided by \cite{rothlecnotes}. For the rectangular waveguide found in \ref{subsec:vv}, a WR-90, X-band waveguide with $a=0.02286$m and $b=0.01016$m was used \cite{everythingrf}. For the circular waveguide used in \ref{subsec:circ_guides}, a similarly sized circular waveguide of radius $r=0.01$m was used. In order to compare the non-ridged to the ridged waveguide the same WR-90, X-band waveguide was used in Section \ref{subsec:rid_guides} as in Section \ref{subsec:vv} however with two $0.0025\times0.0025$m notches cut out along the long edge. Example meshes of the later two geometries can be found in Figures \ref{fig:circular_guide}-\ref{fig:ridged_guide}. These meshes were generated using Coreform Cubit's \verb|TriAdvance| algorithm all containing $\approx2000$ nodes which is appropriate for the applications studied here. Coreform Cubit's \verb|nodeset| feature was used to create a set of all nodes on the boundaries of these geometries. This allows for $O(1)$ lookups of elements on the boundary which was utilized heavily when performing TE mode analysis. These meshes were saved into the ANSYS \verb|.inp| ASCII format which was chosen as it is human readable which was invaluable during the development of this code.
 
 \begin{figure}[h!]  
 	\centering
@@ -28,7 +28,9 @@ The mathematical model outlined in Section \ref{sec:mathmod} was implemented in 
 \label{subsec:vv}
 Prior to performing any kind of `novel' analysis, the implemented model must first be benchmarked against analytic results. For this reason, we will first consider the case of a WR-90, X-band waveguide WR-90, X-band waveguide with $a=0.02286$m and $b=0.01016$m \cite{everythingrf}. 
 
-In this and all following sections the spatial distributions of TE modes will be plotted. Only one mode will be plotted per section as these are merely visual aids in comparison to the dispersion charts which will contain data from the first 3 TE and TM modes. The choice of the given TE mode is entirely arbitrary and was chosen for its post processing simplicity and to ensure adequate comparisons exist in the literature \cite{pozar2011microwave}. The $\mathrm{TE}_{11}$, $H_z$ field distribution can be found in Fig. \ref{fig:reg_guide_dist}. As seen in Fig. \ref{fig:reg_guide_dist} the $\mathrm{TE_{11}}$, $H_z$ field profile matches that of the $\mathrm{TE}_{11}$ found in the literature thus confirming its accuracy in recreating spatial field profiles.
+In this and all following sections the spatial distributions of TE modes will be plotted. Only one mode will be plotted per section as these are merely visual aids in comparison to the dispersion charts which will contain data from the first 3 TE and TM modes. The choice of the given TE mode is entirely arbitrary and was chosen for its post processing simplicity and to ensure adequate comparisons exist in the literature \cite{pozar2011microwave}. The $\mathrm{TE}_{11}$, $H_z$ field distribution can be found in Fig. \ref{fig:reg_guide_dist}. 
+
+As seen in Fig. \ref{fig:reg_guide_dist} the $\mathrm{TE_{11}}$, $H_z$ field profile matches that of the $\mathrm{TE}_{11}$ found in the literature thus confirming its accuracy in recreating spatial field profiles. The $\mathrm{TE}_{10}$ and $\mathrm{TE}_{21}$ modes profiles were also vetted however are not shown here to reduce clutter.
 
 \begin{figure}[h!]  
 	\centering
@@ -48,16 +50,63 @@ where $m$ and $n$ are the corresponding mode propagation numbers. From this, the
 	\centering
 	%the command within the [] sets the width of the figure, stability-condition is the jpg name
 	\includegraphics[width=\columnwidth]{rec_waveguide_disp.png} 
-	\caption{$\mathrm{TE_{11}}$, $H_z$ Field Distribution in a Rectangular WR-90, X-band Waveguide with Solid Lines as the Theoretical Dispersion Relation and Corresponding Markers as Simulated Dispersion Relation}
+	\caption{Dispersion Plots of First Three TE and TM Modes in Rectangular WR-90, X-band Waveguide with Solid Lines as Analytical Results and Corresponding Markers as Simulated Results}
 	\label{fig:rect_disp}
 \end{figure}
 
-As seen in Fig. \ref{fig:rect_disp}, the dispersion relations predicted by the implemented model match that predicted by theory excellently. With this, we move on to assess more sophisticated waveguides knowing that the underlying mathematical model is sound.
+As seen in Fig. \ref{fig:rect_disp}, the dispersion relations predicted by the implemented model match that predicted by theory excellently. Additionally, this demonstrates that the choice of using $\approx2000$ nodes to represent these geometries is more than sufficient to ensure convergence on the true solution. With this, we move on to assess more sophisticated waveguides knowing that the underlying mathematical model is sound.
 
 
 \subsection{Circular Waveguides}
 \label{subsec:circ_guides}
-With the model successfully validated against the analytic results of a rectangular waveguide, we now move to assess a circular waveguide of radius $r=0.01$m. 
+With the model successfully validated against the analytic results of a rectangular waveguide, we now move to assess a circular waveguide of radius $r=0.01$m. We first perform one last visual verification step by comparing the field profiles of the $\mathrm{TE}_{01}$ and $\mathrm{TE}_{11}$ modes generated by our model to that of the analytic profiles found in literature. The simulated $\mathrm{TE}_{01}$ $H_z$ profile can be found in Fig. \ref{fig:circ_prof}.
+
+\begin{figure}[h!]  
+	\centering
+	%the command within the [] sets the width of the figure, stability-condition is the jpg name
+	\includegraphics[width=\columnwidth]{te01_circ.png} 
+	\caption{$\mathrm{TE_{01}}$, $H_z$ Field Distribution in a Circular Waveguide with $r=0.01$m}
+	\label{fig:circ_prof}
+\end{figure}
+
+As seen in Fig. \ref{fig:circ_prof} the $H_z$ profile matches that found in the literature \cite{pozar2011microwave} thereby providing additional validation for the implemented numerical model. These field plots also highlight one of the main strengths of FEM which is its ability to work with unstructured grids out of the box. Modeling a similar profile using a finite difference method would result in egregious stair-stepping error if performed in Cartesian coordinates or would require a special derivation in polar or cylindrical coordinates which could limit the model's usefulness. On the other hand, FEA is able to handle these curved geometries using unstructured grids with relative ease. 
+
+From here we perform a similar analysis to that of Fig. \ref{fig:rect_disp} for circular waveguides. Traditionally, producing such plots would require tables containing roots of the Bessel function of the first kind $p_{nm}$ and it's derivative $p^{'}_{nm}$ which are used to determine the cutoff wave numbers as
+\begin{align}
+	k_c = \frac{p^{'}_{nm}}{r},
+\end{align}
+and
+\begin{align}
+	k_c = \frac{p_{nm}}{r}
+\end{align}
+respectfully for the TE and TM modes. Using the above FEM, we are able to directly calculate the dispersion relations for any circular waveguide without the use of the roots of a Bessel function or its derivative. The simulated dispersion relations can be found in Fig. \ref{fig:circ_disp}.
+
+\begin{figure}[h!]  
+	\centering
+	%the command within the [] sets the width of the figure, stability-condition is the jpg name
+	\includegraphics[width=\columnwidth]{circ_waveguide.png} 
+	\caption{Dispersion Plots of First Three TE and TM Modes in a Circular Waveguide with $r=0.01$m}
+	\label{fig:circ_disp}
+\end{figure}
+
+As seen in Fig. \ref{fig:circ_disp}, the bandwidth between individual propagation modes in a circular waveguide is much less than that of rectangular waveguides as documented in Fig. \ref{fig:rect_disp}. This is perhaps most notable between the $\mathrm{TE}_{11}$ dominant mode and the next $\mathrm{TM}_{01}$ mode which is rather small. This is well documented in the literature \cite{cadencecircular} and is one of the main factors limiting circular waveguides from being used in wide-band applications. Finally, FEA was able to successfully predict the equivalence of the cutoff wave number for the  $\mathrm{TE}_{01}$ and $\mathrm{TM}_{11}$ modes which is well documented in the literature \cite{pozar2011microwave} thereby providing one last verification step prior to considering ridged rectangular waveguides.
 
 \subsection{Comparison of Ridged and Non-Ridged Waveguides}
 \label{subsec:rid_guides}
+With all validation steps completed, we now focus on the comparison of a standard WR-90, X-band waveguide to that of a double ridged WR-90, X-band waveguide.
+
+\begin{figure}[h!]  
+	\centering
+	%the command within the [] sets the width of the figure, stability-condition is the jpg name
+	\includegraphics[width=\columnwidth]{te11_rid.png} 
+	\caption{$\mathrm{TE_{11}}$, $H_z$ Field Distribution in a Rectangular WR-90, X-band Waveguide with Solid Lines as the Theoretical Dispersion Relation and Corresponding Markers as Simulated Dispersion Relation}
+	\label{fig:rect_disp}
+\end{figure}
+
+\begin{figure}[h!]  
+	\centering
+	%the command within the [] sets the width of the figure, stability-condition is the jpg name
+	\includegraphics[width=\columnwidth]{ridged_waveguide_w_comp} 
+	\caption{$\mathrm{TE_{11}}$, $H_z$ Field Distribution in a Rectangular WR-90, X-band Waveguide with Solid Lines as the Theoretical Dispersion Relation and Corresponding Markers as Simulated Dispersion Relation}
+	\label{fig:rect_disp}
+\end{figure}
