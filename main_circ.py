@@ -69,6 +69,14 @@ def main() -> None:
     plt.legend(loc="lower right", frameon=False)
 
     plt.show()
+    
+    plt.tripcolor(
+        locations[:, 0],
+        locations[:, 1],
+        np.real(eig_vec_TE[:, 207]),
+        cmap="coolwarm",
+    )
+    plt.show()
 
 
 if __name__ == "__main__":

@@ -74,6 +74,20 @@ def main() -> None:
 
     plt.show()
 
+    plt.tripcolor(
+        locations[:, 0],
+        locations[:, 1],
+        np.real(eig_vec_TE[:, 116]),
+        cmap="coolwarm",
+    )
+
+    square1 = plt.Rectangle((-0.0025/2,-b/2), 0.0025, 0.0025, color="white", fill=True)
+    plt.gca().add_patch(square1)
+    square2 = plt.Rectangle((-0.0025/2,b/4+0.00001), 0.0025, 0.0025, color="white", fill=True)
+    plt.gca().add_patch(square2)
+
+    plt.show()
+
 
 if __name__ == "__main__":
     main()
