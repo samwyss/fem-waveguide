@@ -1,8 +1,6 @@
 from src.Mesh import Mesh
-from numpy import zeros, nonzero, sort, where, in1d, array, absolute, savetxt
-from scipy.linalg import eig, eigvals
-import matplotlib.pyplot as plt
-from numpy.linalg import norm
+from numpy import zeros
+from scipy.linalg import eig
 
 
 class Solver:

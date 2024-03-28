@@ -42,18 +42,6 @@ class Mesh:
 
         return node_idx in self.boundary_node_set
 
-    def distance_between_nodes(self, node_1_idx: int, node_2_idx: int) -> float:
-        """
-        determines the distance between any two nodes using global node indexes
-        :param node_1_idx: int, global node index 1
-        :param node_2_idx: int, global node index 2
-        :return: float, distance between nodes 1 and 2
-        """
-
-        return np.linalg.norm(
-            self.node_location_list[node_1_idx] - self.node_location_list[node_2_idx]
-        )
-
     def get_coord_list(self, global_element_idx):
 
         # gets global node indexes associated with global node node_idx
