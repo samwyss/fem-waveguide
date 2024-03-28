@@ -149,22 +149,3 @@ def main() -> None:
 # call main function
 if __name__ == "__main__":
     main()
-    """
-    # determine indices
-    idxs = where(in1d(eig_values, first_eigs))
-    print(idxs)
-
-    # convert locations and eigenvectors to numpy arrays to make them usable
-    locations = array(self.mesh.node_location_list)
-    connectivity = array(self.mesh.connectivity_list)
-    fields = array(eig_vecs)
-
-    # make plots
-    plt.tripcolor(
-        locations[:, 0],
-        locations[:, 1],
-        np.real(eig_vec_TE[:, 119]),
-        cmap="coolwarm",
-    )
-    plt.show()
-    """
