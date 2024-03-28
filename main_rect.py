@@ -1,7 +1,8 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
 from src.Mesh import Mesh
 from src.Solver import Solver
-import numpy as np
-import matplotlib.pyplot as plt
 
 
 def main() -> None:
@@ -10,22 +11,22 @@ def main() -> None:
     :returns None
     """
 
-    # perform analysis ---------------------------------------------------------------------------------------------------
+    # perform analysis -------------------------------------------------------------------------------------------------
     mesh = Mesh("./meshes/rectangle/rec_mesh.inp")
     solver = Solver(mesh)
     (eig_values_TE, eig_vec_TE, eig_values_TM, eig_vec_TM) = solver.solve_eig_probs()
 
-    # print out kc^2 and the indices of their corresponding eigenvectors _________________________________________________
+    # print out kc^2 and the indices of their corresponding eigenvectors -----------------------------------------------
     first_eig_vals_TE = np.sort(eig_values_TE[np.absolute(eig_values_TE) > 0])[:10]
     first_eig_vals_TM = np.sort(eig_values_TM[np.absolute(eig_values_TM) > 0])[:10]
-    print(f"First TE Eigenvalues: {first_eig_vals_TE}")
-    print(f"First TM Eigenvalues: {first_eig_vals_TM}")
     first_eig_vecs_idx_TE = np.where(np.in1d(eig_values_TE, first_eig_vals_TE))
     first_eig_vecs_idx_TM = np.where(np.in1d(eig_values_TM, first_eig_vals_TM))
+    print(f"First TE Eigenvalues: {first_eig_vals_TE}")
+    print(f"First TM Eigenvalues: {first_eig_vals_TM}")
     print(f"Indices of First TE Eigenvalues: {first_eig_vecs_idx_TE}")
     print(f"Indices of First TM Eigenvalues: {first_eig_vecs_idx_TM}")
 
-    # make dispersion plots ----------------------------------------------------------------------------------------------
+    # make dispersion plots --------------------------------------------------------------------------------------------
     # constants
     epsilon = 8.8541878128e-12
     mu = 1.25663706212e-6
@@ -156,7 +157,7 @@ def main() -> None:
     )
     plt.show()
 
-    # make field profile plot at eigenvalue index "plot_idx", this should be obtained using the indices printed out above-------------
+    # make field profile plot at eigenvalue index "plot_idx", this should be obtained using the indices printed out above
     plot_idx = 89
     locations = np.array(mesh.node_location_list)
 

@@ -1,5 +1,4 @@
 import meshio
-import numpy as np
 
 
 class Mesh:
@@ -43,6 +42,11 @@ class Mesh:
         return node_idx in self.boundary_node_set
 
     def get_coord_list(self, global_element_idx):
+        """
+        returns a coordinate list for use in calculating a, b, and c
+        :param global_element_idx: index of desired global element
+        :return:
+        """
 
         # gets global node indexes associated with global node node_idx
         (node_1, node_2, node_3) = self.connectivity_list[global_element_idx]

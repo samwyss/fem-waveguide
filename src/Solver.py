@@ -1,6 +1,7 @@
-from src.Mesh import Mesh
-from numpy import zeros
+from numpy import zeros, ndarray
 from scipy.linalg import eig
+
+from src.Mesh import Mesh
 
 
 class Solver:
@@ -18,6 +19,10 @@ class Solver:
         self.assemble_tm_matrices()
 
     def assemble_te_matrices(self):
+        """
+        assembles TE FEM matrices
+        :return:
+        """
         # determine the number of elements (excluding elements on the boundary as they are not included in TM problem)
         num_nodes = len(self.mesh.node_location_list)
 
@@ -58,6 +63,10 @@ class Solver:
         self.b_te = b_te
 
     def assemble_tm_matrices(self):
+        """
+        Assembles TM FEM matrices
+        :return:
+        """
         # determine the number of elements (excluding elements on the boundary as they are not included in TM problem)
         num_nodes = len(self.mesh.node_location_list) - len(self.mesh.boundary_node_set)
 
@@ -72,11 +81,22 @@ class Solver:
                     i_gl_idx = self.mesh.connectivity_list[global_element_idx][l_idx]
                     j_gl_idx = self.mesh.connectivity_list[global_element_idx][k_idx]
 
-                    if (self.mesh.is_on_boundary(j_gl_idx) or self.mesh.is_on_boundary(i_gl_idx)):
+                    if self.mesh.is_on_boundary(j_gl_idx) or self.mesh.is_on_boundary(
+                        i_gl_idx
+                    ):
                         pass
                     else:
-                        i_gl_idx = self.mesh.connectivity_list[global_element_idx][l_idx] - sum(i < i_gl_idx for i in self.mesh.boundary_node_set)
-                        j_gl_idx = self.mesh.connectivity_list[global_element_idx][k_idx] - sum(i < j_gl_idx for i in self.mesh.boundary_node_set)
+                        i_gl_idx = self.mesh.connectivity_list[global_element_idx][
+                            l_idx
+                        ] - sum(
+                            i < i_gl_idx for i in self.mesh.boundary_node_set
+                        )  # corrects node index for boundary nodes
+                        j_gl_idx = self.mesh.connectivity_list[global_element_idx][
+                            k_idx
+                        ] - sum(
+                            i < j_gl_idx for i in self.mesh.boundary_node_set
+                        )  # corrects node index for boundary nodes
+
                         # delta function contribution
                         equal_term = 1 if l_idx == k_idx else 0
 
@@ -103,6 +123,12 @@ class Solver:
         self.b_tm = b_tm
 
     def calc_a_node(self, global_element_num: int, local_node_idx: int) -> int:
+        """
+        calculates the "a" parameter at a given global and local node index
+        :param global_element_num: global element number index
+        :param local_node_idx: local node index
+        :return: the "a parameter" at a given global and local node index
+        """
 
         # get coordinate list of all nodes in element
         clist = self.mesh.get_coord_list(global_element_num)
@@ -120,7 +146,12 @@ class Solver:
         return 0
 
     def calc_b_node(self, global_element_num: int, local_node_idx: int) -> int:
-
+        """
+        calculates the "b" parameter at a given global and local node index
+        :param global_element_num: global element number index
+        :param local_node_idx: local node index
+        :return: the "b" parameter at a given global and local node
+        """
         # get coordinate list of all nodes in element
         clist = self.mesh.get_coord_list(global_element_num)
 
@@ -137,6 +168,12 @@ class Solver:
         return 0
 
     def calc_c_node(self, global_element_num: int, local_node_idx: int) -> int:
+        """
+        calculates the "c" parameter at a given global and local node index
+        :param global_element_num:  global element number index
+        :param local_node_idx: local node index
+        :return: the "c" parameter at the given global and local node
+        """
 
         # get coordinate list of all nodes in element
         clist = self.mesh.get_coord_list(global_element_num)
@@ -154,6 +191,11 @@ class Solver:
         return 0
 
     def calc_element_area(self, global_element_num: int) -> float:
+        """
+        calculaes the area at a given node
+        :param global_element_num: global element index
+        :return: the area of the given element
+        """
         return (
             1
             / 2
@@ -165,9 +207,14 @@ class Solver:
             )
         )
 
-    def solve_eig_probs(self):
+    def solve_eig_probs(self) -> (ndarray, ndarray, ndarray, ndarray):
+        """
+        solves the general eigenvalue problems for the TE and TM modes
+        :return: (eig_val_TE, eig_vec_TE, eig_val_TM, eig_vec_TM)
+        """
 
+        # solve both TE and TM general eigenvalue problems
         (eig_values_TE, eig_vecs_TE) = eig(self.a_te, self.b_te)
         (eig_values_TM, eig_vecs_TM) = eig(self.a_tm, self.b_tm)
 
-        return (eig_values_TE, eig_vecs_TE, eig_values_TM, eig_vecs_TM)
+        return eig_values_TE, eig_vecs_TE, eig_values_TM, eig_vecs_TM
