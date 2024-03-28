@@ -134,7 +134,7 @@ def main() -> None:
     img = ax.tripcolor(
         locations[:, 0],
         locations[:, 1],
-        np.real(eig_vec_TE[:, 119]),
+        np.real(eig_vec_TE[:, 117]),
         cmap="coolwarm",
     )
     cbar = fig.colorbar(img, orientation="horizontal", pad=0.2)

@@ -93,20 +93,44 @@ As seen in Fig. \ref{fig:circ_disp}, the bandwidth between individual propagatio
 
 \subsection{Comparison of Ridged and Non-Ridged Waveguides}
 \label{subsec:rid_guides}
-With all validation steps completed, we now focus on the comparison of a standard WR-90, X-band waveguide to that of a double ridged WR-90, X-band waveguide.
+With all validation steps completed, we now focus on the comparison of a standard WR-90, X-band waveguide to that of a double ridged WR-90, X-band waveguide. As seen in Fig. \ref{fig:ridged_guide} ridges are of size $0.0025\times0.0025$m and are placed at the centerline of the waveguide. Similarly to Section \ref{subsec:vv}, we first consider the $H_z$ field profile of the $\mathrm{TE_{11}}$ mode as shown in Fig. \ref{fig:rect_prof}.
 
 \begin{figure}[h!]  
 	\centering
 	%the command within the [] sets the width of the figure, stability-condition is the jpg name
 	\includegraphics[width=\columnwidth]{te11_rid.png} 
-	\caption{$\mathrm{TE_{11}}$, $H_z$ Field Distribution in a Rectangular WR-90, X-band Waveguide with Solid Lines as the Theoretical Dispersion Relation and Corresponding Markers as Simulated Dispersion Relation}
-	\label{fig:rect_disp}
+	\caption{$\mathrm{TE_{11}}$, $H_z$ Field Distribution in a Ridged Rectangular WR-90, X-band Waveguide}
+	\label{fig:rid_prof}
 \end{figure}
+
+As seen in Fig. \ref{fig:rect_prof} the field profile is nearly identical to that of the non-ridged WR-90 waveguide shown in Fig. \ref{fig:rect_prof}. This is expected as the propagation mode is identical despite the introduction of ridges. To demonstrate differences we now look to creating a dispersion plot for this ridged waveguide. To demonstrate differences between the ridged and base waveguides, we plot the theoretical base dispersion curves as solid lines, and the corresponding simulated data for the same modes as markers. Said plot can be found in Fig. \ref{fig:rid_disp}.
 
 \begin{figure}[h!]  
 	\centering
 	%the command within the [] sets the width of the figure, stability-condition is the jpg name
 	\includegraphics[width=\columnwidth]{ridged_waveguide_w_comp} 
-	\caption{$\mathrm{TE_{11}}$, $H_z$ Field Distribution in a Rectangular WR-90, X-band Waveguide with Solid Lines as the Theoretical Dispersion Relation and Corresponding Markers as Simulated Dispersion Relation}
-	\label{fig:rect_disp}
+	\caption{$\mathrm{TE_{11}}$, $H_z$ Field Distribution in a Ridged Rectangular WR-90, X-band Waveguide with Solid Lines as the Theoretical Dispersion Relation for Base Waveguide and Corresponding Markers as Simulated Dispersion Relation for Ridged Waveguide}
+	\label{fig:rid_disp}
 \end{figure}
+
+It is clear from fig \ref{fig:rid_disp} that the cutoff wave number of the dominant $\mathrm{TE}_{10}$ mode is less than that of the rectangular waveguide in allignment with the theory \cite{pozar2011microwave}. In addition to this, all fields with cutoff wave numbers greater than the dominant mode all experience an increase in cutoff wave number within the ridged waveguide. These phenomenon can all be explained via field buckling caused by the inclusion of ridges. To demonstrate this, the field profiles of the dominant $\mathrm{TE}_{10}$ modes for both the base and ridged waveguides can be found in Figs. \ref{fig:rec_te10}-\ref{fig:rid_te10}.
+
+\begin{figure}[h!]  
+	\centering
+	%the command within the [] sets the width of the figure, stability-condition is the jpg name
+	\includegraphics[width=\columnwidth]{te10_rect.png} 
+	\caption{Dominant $\mathrm{TE_{10}}$, $H_z$ Field Distribution in a Rectangular WR-90, X-band Waveguide}
+	\label{fig:rec_te10}
+\end{figure}
+
+\begin{figure}[h!]  
+	\centering
+	%the command within the [] sets the width of the figure, stability-condition is the jpg name
+	\includegraphics[width=\columnwidth]{te10_ridged.png} 
+	\caption{Dominant $\mathrm{TE_{10}}$, $H_z$ Field Distribution in a Ridged Rectangular WR-90, X-band Waveguide}
+	\label{fig:rid_te10}
+\end{figure}
+
+Figure \ref{fig:rec_te10} shows that in the base waveguide there are two distinct regions within the $H_z$ field profile. In the case of the ridged waveguide, the ridges align with the gap between these field regions allowing for the same field profile to be achieved at lower frequencies thus resulting in the lowering of the cutoff wave number. In other words, the inclusion of ridges facilitates a lower overall field buckling for this propagation mode. In contrast to this, higher order modes such as the $\mathrm{TE}_11$ mode found in Fig. \ref{fig:rid_prof} require increased buckling in order to satisfy the boundary conditions of (\ref{eq:diriclet_tm}-\ref{eq:neumann_te}) to achieve the same field profile. This increased field buckling directly corresponds to an increase in the minimum cutoff wave number, and corresponding frequency content, to recreate these higher-order, more complex, propagation modes.
+
+For this reason, ridged waveguides offer superior bandwidth for the dominant modes making them superior for transmitting high-bandwidth signals.   
