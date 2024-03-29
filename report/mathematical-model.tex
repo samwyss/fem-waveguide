@@ -1,12 +1,12 @@
 \section{Mathematical Model}
 \label{sec:mathmod}
 
-To model these systems \textit{in silico}, an appropriate mathematical model must first be derived from Maxwell's Equations. The development of said model model is arranged as follows. Section \ref{subsub:goveq} contains the derivation of the Helmholtz wave equations and corresponding boundary conditions from Maxwell's Equations. Section \ref{subsub:galerkin_weak} consists of the derivation of the Galerkin weak form of both Helmholtz wave equations. Section \ref{subsub:mat_assembly} outlines the FEM assembly method using analytical forms of integrals derived in \ref{subsub:galerkin_weak}.
+To model these systems \textit{in silico}, an appropriate mathematical model must first be derived from Maxwell's Equations. The development of said model is arranged as follows. Section \ref{subsub:goveq} contains the derivation of the Helmholtz wave equations and corresponding boundary conditions from Maxwell's Equations. Section \ref{subsub:galerkin_weak} consists of the derivation of the Galerkin weak form of both Helmholtz wave equations. Section \ref{subsub:mat_assembly} outlines the FEM assembly method using analytical forms of integrals derived in \ref{subsub:galerkin_weak}.
 
 \subsubsection{Governing Equations}
 \label{subsub:goveq}
 
-The frequency domain Maxwell's Equations in the absence of electric or fictitious magnetic currents are,
+The frequency domain Maxwell's Equations in the absence of electric or fictitious magnetic currents are
 \begin{align}
 	\nabla \times \textbf{E} = -j\omega\textbf{B},
 	\label{eq:faraday}
@@ -29,7 +29,7 @@ and
 	\label{eq:corE}
 \end{align}
 
-These constitutive relations can now be used to simplify (\ref{eq:faraday}-\ref{eq:ampere}) as in 
+These constitutive relations can now be used to simplify (\ref{eq:faraday}-\ref{eq:ampere}) to the following
 \begin{align}
 	\nabla \times \textbf{E} = -j\omega\mu\textbf{H},
 	\label{eq:faraday_reduced}
@@ -40,7 +40,7 @@ and
 	\label{eq:ampere_reduced}
 \end{align}
 
-In the case of the infinite waveguide, the TM and TE modes can be fully solving for $E_z$ and $H_z$ respectively as all other field components can be derived from these two transverse fields \cite{rothlecnotes}, \cite{jin2011theory}. With this, (\ref{eq:faraday_reduced}-\ref{eq:ampere_reduced}) can be manipulated to solve for two independent 2-dimensional Helmholtz equations as
+In the case of the infinite waveguide, the TM and TE modes can be fully solved for $E_z$ and $H_z$ respectively, as all other field components can be derived from these two transverse fields \cite{rothlecnotes}, \cite{jin2011theory}. With this, (\ref{eq:faraday_reduced}-\ref{eq:ampere_reduced}) can be manipulated to solve for two independent 2-dimensional Helmholtz equations as
 \begin{align}
 	\nabla_t^2 E_z+k_c^2E_z=0 \quad \mathrm{on} \ \Omega,
 	\label{eq:tm_helmholtz}
@@ -50,9 +50,9 @@ and
 	\nabla_t^2 H_z+k_c^2H_z=0 \quad \mathrm{on} \ \Omega
 	\label{eq:te_helmholtz}
 \end{align}
-where $\nabla_t^2=\partial^2_x+\partial^2_y$ the the trasverse Laplacian operator in cartesian coordinates, $k_c^2=\omega^2\mu\epsilon-k_z^2$ is the cutoff wave number, $k_z$ is the wavenumber in the direction of propagation, and $\Omega$ denotes all non-boundary locations within the simulation domain.
+where $\nabla_t^2=\partial^2_x+\partial^2_y$ is the the trasverse Laplacian operator in Cartesian coordinates, $k_c^2=\omega^2\mu\epsilon-k_z^2$ is the cutoff wave number, $k_z$ is the wavenumber in the direction of propagation, and $\Omega$ denotes all non-boundary locations within the simulation domain.
 
-These relations hold for all locations excluding those on the PEC walls of the waveguide. This PEC wall condition manifests in the form of a Dirichlet boundary condition
+These relations hold for all locations excluding those on the PEC walls of the waveguide. The PEC wall condition manifests in the form of a Dirichlet boundary condition
 \begin{align}
 	E_z=0 \quad \mathrm{on} \ \partial\Omega
 	\label{eq:diriclet_tm}
@@ -66,19 +66,20 @@ for the TE mode where $\partial\Omega$ denotes the PEC surface surrounding the w
 
 \subsubsection{Galerkin Weak Formulation}
 \label{subsub:galerkin_weak}
-With the governing equations established, we can now proceed with the discretization of an arbitrarily shaped waveguide to solve for both the transverse electric and magnetic fields. Using FEM, we break these 2D waveguide slices into a finite set of finitely sized elements and approximate the solution of (\ref{eq:tm_helmholtz}-\ref{eq:te_helmholtz}) over each element. Triangular elements are chosen as they can be meshed together to form the boundaries of arbitrarily curved shapes making them ideal for modeling geometries with no analytic solutions \cite{jin2011theory}. Linearly interpolating functions are used to approximate the solution of (\ref{eq:tm_helmholtz}-\ref{eq:te_helmholtz}) at the nodes of each element. Linear interpolating functions are chosen for their overall simplicity and adequate accuracy for the determination of waveguide parameters \cite{rothlecnotes}, \cite{jin2011theory}. 
+With the governing equations established, the discretization of an arbitrarily shaped waveguide is outlined which will be used to solve for both the transverse electric and magnetic fields. Using FEM, the 2D waveguide cross section is broken into a finite set of finitely sized elements over which the solution of (\ref{eq:tm_helmholtz}-\ref{eq:te_helmholtz}) is approximated over. Triangular elements are chosen as they can be meshed together to form the boundaries of arbitrarily curved shapes making them ideal for modeling geometries with no analytic solutions \cite{jin2011theory}. Linear interpolating functions are used to approximate the solution of (\ref{eq:tm_helmholtz}-\ref{eq:te_helmholtz}) at the nodes of each element. These interpolating functions are chosen for their overall simplicity and adequate accuracy for the determination of waveguide parameters \cite{rothlecnotes}, \cite{jin2011theory}. 
 
-For an arbitrary triangular element, an generic scalar field $\phi$ can be Linearly interpolated over using
+For an arbitrary triangular element, a generic scalar field $\phi$, can be linearly interpolated over using
 \begin{align}
 	\phi^{(e)}(x,y)=a+bx+cy
 	\label{eq:basic-el-interp}
 \end{align} 
-where $(e)$ refers to a specific element, $a$, $b$, $c$ are scaling constants and $x$, $y$ are the coordinates of the location within the node \cite{jin2011theory}. This interpolation scheme can now be applied to find the field value at an arbitrary node on the element as
+where $(e)$ refers to a specific element, $a$, $b$, $c$ are scaling constants and $x$, $y$ are the coordinates of the location within the node \cite{jin2011theory}. This interpolation scheme can now be applied to find the field value at an arbitrary node on the element as done in \cite{jin2011theory}:
 \begin{align}
-	\phi^{(e)}_l=a+bx_l+cy_l
+	\phi^{(e)}_l=a+bx_l+cy_l.
 	\label{eq:node-interp}
 \end{align}
-where $x$, $y$ are the coordinates of the node \cite{jin2011theory}. These nodal field expressions can now be combined to rewrite (\ref{eq:basic-el-interp}) in terms of the potentials calculated at each node as
+
+These nodal field expressions can now be combined to rewrite (\ref{eq:basic-el-interp}) in terms of the potentials calculated at each node as
 \begin{multline}
 	\phi^{(e)}(x,y)=N_1^{(e)}(x,y)\phi^{(e)}_1\\+N_2^{(e)}(x,y)\phi^{(e)}_2+N_3^{(e)}(x,y)\phi^{(e)}_3
 	\label{eq:elementinterp}
@@ -86,7 +87,7 @@ where $x$, $y$ are the coordinates of the node \cite{jin2011theory}. These nodal
 \begin{align}
 	N_l^{(e)}(x,y)=\frac{1}{2\Delta^{(e)}}\left(a_l^{(e)}+b_l^{(e)}x+c_l^{(e)}y\right)
 \end{align}
-where $\Delta^{(e)}$ is the area of element $e$ and $a_l^{(e)}$, $b_l^{(e)}$, $c_l^{(e)}$ are given by the following as in \cite{jin2011theory}
+where $\Delta^{(e)}$ is the area of element $e$ and $a_l^{(e)}$, $b_l^{(e)}$, $c_l^{(e)}$ are given by the following as in \cite{jin2011theory}:
 \begin{multline}
 	\quad \ \ \ a_1^{e} = x^{e}_2y^{e}_3-x^{e}_3y^{e}_2,b_1^{e}=y^{e}_2-y^{e}_3, c_1^{e}=x^{e}_3-y^{e}_2
 	\\
@@ -96,15 +97,15 @@ where $\Delta^{(e)}$ is the area of element $e$ and $a_l^{(e)}$, $b_l^{(e)}$, $c
 	\label{eq:coefficients}
 \end{multline}
 
-With definitions (\ref{eq:elementinterp}-\ref{eq:coefficients}) an arbitrary field with potential Dirichlet boundary conditions (noted by $D$) can be expressed as the superposition of all fields at each node as 
+Using definitions (\ref{eq:elementinterp}-\ref{eq:coefficients}), an arbitrary field with potential Dirichlet boundary conditions (noted by $D$) can be expressed as the superposition of all fields at each node by 
 \begin{align}
-	\phi=\sum_{j=1}^{N}N_j\phi_j+\sum_{j=1}^{N}N_j^D\phi_j^D
+	\phi=\sum_{j=1}^{N}N_j\phi_j+\sum_{j=1}^{N}N_j^D\phi_j^D.
 	\label{eq:genericfield}
 \end{align}
 
-With the discretization of a generic field outlined, The Galerkin weak forms of (\ref{eq:tm_helmholtz}-\ref{eq:te_helmholtz}) will now be derived in parallel. We begin by multiplying (\ref{eq:tm_helmholtz}-\ref{eq:te_helmholtz}) by a weighting function which is identical to that of an interpolating funcion for the Galerkin procedure such that $w_i=N_i$. The resulting weak forms are
+With the discretization of a generic field outlined, the Galerkin weak forms of (\ref{eq:tm_helmholtz}-\ref{eq:te_helmholtz}) will now be derived in parallel. We begin by multiplying (\ref{eq:tm_helmholtz}-\ref{eq:te_helmholtz}) by a weighting function which is identical to that of an interpolating funcion for the Galerkin procedure such that $w_i=N_i$. The resulting weak forms are
 \begin{align}
-	\iint_\Omega N_i \left(\nabla_t^2 E_z+k_c^2E_z\right)d\Omega = 0
+	\iint_\Omega N_i \left(\nabla_t^2 E_z+k_c^2E_z\right)d\Omega = 0,
 	\label{eq:initialtmweak}
 \end{align}
 and
@@ -113,9 +114,9 @@ and
 	\label{eq:initialteweak}
 \end{align}
 
-In order for the linear weighting and basis functions $N_i, N_j$ to work well, the laplacian term in \ref{eq:initialtmweak}-\ref{eq:initialteweak} needs to be "spread-out". To accomplish this, integration by parts is exploited as follows
+In order for the linear weighting and basis functions $N_i, N_j$ to work well, the Laplacian term in \ref{eq:initialtmweak}-\ref{eq:initialteweak} needs to be `spread-out'. To accomplish this, integration by parts is exploited as follows:
 \begin{multline}
-	\iint_\Omega\left(\nabla_tN_i\cdot\nabla_tE_z-k_c^2E_zN_i\right)d\Omega \\= \left(N_i(\hat{n}\cdot\nabla_tE_z)\right)_{\partial\Omega}
+	\iint_\Omega\left(\nabla_tN_i\cdot\nabla_tE_z-k_c^2E_zN_i\right)d\Omega \\= \left(N_i(\hat{n}\cdot\nabla_tE_z)\right)_{\partial\Omega},
 	\label{eq:initialtmweak}
 \end{multline}
 and
@@ -123,11 +124,11 @@ and
 	\iint_\Omega\left(\nabla_tN_i\cdot\nabla_tH_z-k_c^2H_zN_i\right)d\Omega \\= \left(N_i(\hat{n}\cdot\nabla_tH_z)\right)_{\partial\Omega}
 	\label{eq:initialteweak}
 \end{multline}
-With these forms in hand, we are now able to simplify the right hand sides of (\ref{eq:initialtmweak}-\ref{eq:initialteweak}) using the boundary conditions found in (\ref{eq:diriclet_tm}-\ref{eq:neumann_te}). The right hand side of (\ref{eq:initialtmweak}) disappears as $E_z$ is explicitly set to zero on $\partial\Omega$ in the Dirichlet boundary condition (\ref{eq:diriclet_tm}). Likewise, the right hand side of (\ref{eq:initialteweak}) reduces to zero as the Neumann boundary condition in (\ref{eq:neumann_te}) sets $\nabla_tH_z=0$. Despite the fact that both right hand sides reduce to zero, there is an important implementation detail that results in the final equations that arrises due to the Dirichlet term in (\ref{eq:genericfield}). For simplicity, this term will be left out of the remaining equations however the impact of the Dirichlet term on (\ref{eq:initialtmweak}) will be discussed in Section \ref{subsub:mat_assembly}.
+With these forms in hand, the right hand sides of (\ref{eq:initialtmweak}-\ref{eq:initialteweak}) can now be simplified using the boundary conditions found in (\ref{eq:diriclet_tm}-\ref{eq:neumann_te}). The right hand side of (\ref{eq:initialtmweak}) disappears as $E_z$ is explicitly set to zero on $\partial\Omega$ in the Dirichlet boundary condition (\ref{eq:diriclet_tm}). Likewise, the right hand side of (\ref{eq:initialteweak}) reduces to zero as the Neumann boundary condition in (\ref{eq:neumann_te}) sets $\nabla_tH_z=0$. Despite the fact that both right hand sides reduce to zero, there is an important implementation detail that results in the final equations arising due to the Dirichlet term in (\ref{eq:genericfield}). For simplicity, this term will be left out of the remaining equations however the impact of the Dirichlet term on (\ref{eq:initialtmweak}) will be discussed in Section \ref{subsub:mat_assembly}.
 
 Substituting in the generic field outlined in (\ref{eq:genericfield}) with the exclusion of the Dirichlet term as previously mentioned results in the following general eigenvalue equations
 \begin{align}
-	[A]\{E_z\}=k^2_c[B]\{E_z\}
+	[A]\{E_z\}=k^2_c[B]\{E_z\},
 	\label{eq:tm_eig}
 \end{align}
 and
@@ -137,7 +138,7 @@ and
 \end{align}
 to solve for the TM and TE modes respectively where $[A]$ and $[B]$ are sparse coefficient matrices. Individual coefficients in these matrices are calculated as
 \begin{align}
-	A_{ij}=\iint_\Omega\left(\nabla_tN_i\cdot\nabla_tN_j\right)d\Omega
+	A_{ij}=\iint_\Omega\left(\nabla_tN_i\cdot\nabla_tN_j\right)d\Omega,
 	\label{eq:a_int}
 \end{align}
 and
@@ -148,7 +149,7 @@ and
 
 \subsubsection{Finite Element Matrix Assembly}
 \label{subsub:mat_assembly}
-With the Galerkin weak form of both Helmholtz equations derived, and the general eigenvalue problems established, we are now able to outline the assembly of the matrices $[A]$ and $[B]$. These matrices are constructed using the standard FEM matrix assembly process. Using this procedure, (\ref{eq:a_int}-\ref{eq:b_int}) are not explicitly calculated in one fell swoop for all $(i,j)$. Rather, the contributions from each element are accumulated on local nodes $(l,k)$ \cite{jin2011theory}. This allows for the assembly of the FEM matrices via a simple iteration over all elements without requiring all interactions between adjacent elements to be calculated ahead of time which would be costly. To facilitate this, a given meshing tool needs to provide the physical locations of all nodes as well as a connectivity list relating elements to their corresponding nodes.
+With the Galerkin weak form of both Helmholtz equations derived, and the general eigenvalue problems established, the assembly of the matrices $[A]$ and $[B]$ is now outlined. These matrices are constructed using the standard FEM matrix assembly process. Using this procedure, (\ref{eq:a_int}-\ref{eq:b_int}) are not explicitly calculated in one fell swoop for all $(i,j)$. Rather, the contributions from each element are accumulated on local nodes $(l,k)$ \cite{jin2011theory}. This allows for the assembly of the FEM matrices via a simple iteration over all elements without requiring all interactions between adjacent elements to be calculated ahead of time which would be costly. To facilitate this, a given meshing tool needs to provide the physical locations of all nodes as well as a connectivity list relating elements to their corresponding nodes.
 
 Using the assembly process, and the analytical forms of the integrals of (\ref{eq:a_int}-\ref{eq:b_int}), the contributions of local nodes $(l,k)$ on the global FEM matrices are as follows
 \begin{align}
@@ -160,6 +161,6 @@ and
 	B_{lk}=\frac{\Delta^{(e)}(1+\delta_{lk})}{12}
 	\label{eq:b_fin}
 \end{align}
-where $\delta_{lk}$ is the Kronecker delta function which is the mathematical representation of the ternary statement: "$\delta_{lk} $\verb| = 1 ? (l==k) : 0;|".
+\cite{jin2011theory} where $\delta_{lk}$ is the Kronecker delta function which is the mathematical representation of the ternary statement: "$\delta_{lk} $\verb| = 1 ? (l==k) : 0;|".
 
-With the procedure for assembling the FEM matrices outlined, it is now important to note the differences between $[A]$ and $[B]$ between the TM and TE modes. When solving the TM modes using \ref{eq:tm_eig}, $[A]$ and $[B]$ contain nodes on $\partial\Omega$ as they are unknown. Thus $[A]$ and $[B]$ are both of size $n\times n$ where $n$ is the number of nodes in the geometry. On the other hand, when solving for the TE mode using (\ref{eq:te_eig}), nodes on $\partial\Omega$ are set to $0$, as per the Dirichlet boundary condition, thus do not explicitly contribute to $[A]$ and $[B]$. As such, these matrices are both of size $(n-b)\times(n-b)$ where $b$ is the number of nodes on the boundary.
+With the procedure for assembling the FEM matrices outlined, it is now important to note the differences between $[A]$ and $[B]$ for the TM and TE modes. When solving the TE modes using (\ref{eq:te_eig}), $[A]$ and $[B]$ contain nodes on $\partial\Omega$ as they are unknown. Thus $[A]$ and $[B]$ are both of size $n\times n$ where $n$ is the number of nodes in the geometry. On the other hand, when solving for the TM mode using (\ref{eq:tm_eig}), nodes on $\partial\Omega$ are set to $0$, as per the Dirichlet boundary condition, and thus do not explicitly contribute to $[A]$ and $[B]$. As such, these matrices are both of size $(n-b)\times(n-b)$ where $b$ is the number of nodes on the boundary.
