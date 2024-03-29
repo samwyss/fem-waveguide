@@ -12,7 +12,7 @@ def main() -> None:
     """
 
     # perform analysis -------------------------------------------------------------------------------------------------
-    mesh = Mesh("./meshes/rec_mesh.inp")
+    mesh = Mesh("./meshes/ridged_waveguide.inp")
     solver = Solver(mesh)
     (eig_values_TE, eig_vec_TE, eig_values_TM, eig_vec_TM) = solver.solve_eig_probs()
 
@@ -81,6 +81,7 @@ def main() -> None:
         np.sqrt((2 * np.pi * frequencies_th) ** 2 * mu * epsilon - tm31_th_kc) / k0_th,
         "y",
     )
+
     ax.plot(
         k0_s_a,
         np.sqrt(
@@ -158,7 +159,7 @@ def main() -> None:
     plt.show()
 
     # make field profile plot at eigenvalue index "plot_idx", this should be obtained using the indices printed out above
-    plot_idx = 89
+    plot_idx = 117
     locations = np.array(mesh.node_location_list)
 
     fig, ax = plt.subplots()
@@ -175,6 +176,7 @@ def main() -> None:
         labeltop=False,
         labelright=False,
     )
+
     img = ax.tripcolor(
         locations[:, 0],
         locations[:, 1],
@@ -183,6 +185,16 @@ def main() -> None:
     )
     cbar = fig.colorbar(img, orientation="horizontal", pad=0.2)
     cbar.set_label(r"$H_z$ [A/m]")
+
+    square1 = plt.Rectangle(
+        (-0.0025 / 2, -b / 2), 0.0025, 0.0025, color="white", fill=True
+    )
+    plt.gca().add_patch(square1)
+    square2 = plt.Rectangle(
+        (-0.0025 / 2, b / 4 + 0.00001), 0.0025, 0.0025, color="white", fill=True
+    )
+    plt.gca().add_patch(square2)
+
     plt.show()
 
 
