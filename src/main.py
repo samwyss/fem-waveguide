@@ -1,7 +1,7 @@
 import numpy as np
 
-from src.Mesh import Mesh
-from src.Solver import Solver
+from Mesh import Mesh
+from Solver import Solver
 
 
 def main() -> None:
@@ -11,7 +11,7 @@ def main() -> None:
     """
 
     # solve system
-    mesh = Mesh("./meshes/rec_mesh.inp")
+    mesh = Mesh("./rectangle.inp")
     solver = Solver(mesh)
     (eig_values_TE, eig_vec_TE, eig_values_TM, eig_vec_TM) = solver.solve_eig_probs()
 

@@ -4,7 +4,62 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59dce834-27ce-4a5d-802f-6a1959fcb7eb" name="Changes" comment="started cleanup for public repo" />
+    <list default="true" id="59dce834-27ce-4a5d-802f-6a1959fcb7eb" name="Changes" comment="modified jetbrains configuration">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meshes/circle.cub5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meshes/circle.inp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meshes/pre_subtract.cub5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meshes/rec_mesh.inp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meshes/rectangle/rec_large.inp" beforeDir="false" afterPath="$PROJECT_DIR$/rectangle.inp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meshes/rectangle/rectangle_connectivity.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meshes/rectangle/rectangle_edge_nodes.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meshes/rectangle/rectangle_locations.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meshes/ridged_waveguide.inp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meshes/subtract.cub5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/cem_project2.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/After-you-compile-your-pdf-should-look-like-this.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/ECE618_Report_Template.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/IEEEtran.bst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/IEEEtran.cls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/appendix.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/cem_class_example_bib.bib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/conclusion.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/ece618_project2_report_sam_wyss.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/ece618_project2_report_sam_wyss.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/equations.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/Figures.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/circ_waveguide.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/circ_waveguide.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/circular_mesh.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/circular_mesh.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/comp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/element.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/labeled-monochromatic-source-profile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/model.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/monochromatic-source-profile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/monochromatic-source.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/rec_waveguide_disp.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/rec_waveguide_disp.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/ridged_mesh.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/ridged_mesh.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/ridged_waveguide_no_comp.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/ridged_waveguide_no_comp.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/ridged_waveguide_w_comp.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/ridged_waveguide_w_comp.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/stability-condition.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/te01_circ.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/te01_circ.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/te01_rect.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/te01_rect.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/te01_ridged.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/te01_ridged.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/te10_rect.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/te10_rect.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/te10_ridged.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/te10_ridged.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/te11_rect.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/te11_rect.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/te11_rid.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/te11_rid.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/waveport1.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/waveport2.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/figures/wideband-spectrum.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/getting-started.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/intro.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/mathematical-model.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/numerical-results.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/reference-management.tex" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,6 +126,12 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="W:\Projects\fem-waveguide\src" />
+      <recent name="W:\Projects\fem-waveguide" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="fem_waveguide" />
@@ -86,7 +147,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="SCRIPT_NAME" value="W:\Projects\fem-waveguide\src\main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -118,7 +179,7 @@
       <workItem from="1710177499344" duration="271000" />
       <workItem from="1710177969834" duration="61000" />
       <workItem from="1711637705730" duration="2002000" />
-      <workItem from="1718027635574" duration="3475000" />
+      <workItem from="1718027635574" duration="6007000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -208,7 +269,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718031368038</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="modified jetbrains configuration">
+      <option name="closed" value="true" />
+      <created>1718031476724</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1718031476724</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,12 +306,13 @@
     <MESSAGE value="formatted mesh, solver, and main_rect" />
     <MESSAGE value="formatted main_circ" />
     <MESSAGE value="started cleanup for public repo" />
-    <option name="LAST_COMMIT_MESSAGE" value="started cleanup for public repo" />
+    <MESSAGE value="modified jetbrains configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="modified jetbrains configuration" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/fem_waveguide$main_circ.coverage" NAME="main_circ Coverage Results" MODIFIED="1711639347740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fem_waveguide$main_ridged_rect.coverage" NAME="main_ridged_rect Coverage Results" MODIFIED="1711639620932" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fem_waveguide$main_rect.coverage" NAME="main_rect Coverage Results" MODIFIED="1718028758094" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/fem_waveguide$main.coverage" NAME="main Coverage Results" MODIFIED="1718031301107" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/fem_waveguide$main.coverage" NAME="main Coverage Results" MODIFIED="1718032911845" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
