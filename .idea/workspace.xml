@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59dce834-27ce-4a5d-802f-6a1959fcb7eb" name="Changes" comment="formatted main_circ">
-      <change beforePath="$PROJECT_DIR$/.idea/fem_waveguide.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/fem_waveguide.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/TE_eigenvalues.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/TM_eigenvalues.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deliverables/code/main_circ.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deliverables/code/main_rect.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deliverables/code/main_ridged_rect.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deliverables/code/meshes/circle.inp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deliverables/code/meshes/rec_mesh.inp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deliverables/code/meshes/ridged_waveguide.inp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deliverables/code/src/Mesh.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deliverables/code/src/Solver.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deliverables/ece618_project2_report_sam_wyss.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_circ.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_rect.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_ridged_rect.py" beforeDir="false" />
-    </list>
+    <list default="true" id="59dce834-27ce-4a5d-802f-6a1959fcb7eb" name="Changes" comment="started cleanup for public repo" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -136,7 +118,7 @@
       <workItem from="1710177499344" duration="271000" />
       <workItem from="1710177969834" duration="61000" />
       <workItem from="1711637705730" duration="2002000" />
-      <workItem from="1718027635574" duration="2768000" />
+      <workItem from="1718027635574" duration="3475000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -218,7 +200,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711639416623</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="started cleanup for public repo">
+      <option name="closed" value="true" />
+      <created>1718031368038</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1718031368038</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,12 +236,13 @@
     <MESSAGE value="renamed variables for clarity" />
     <MESSAGE value="formatted mesh, solver, and main_rect" />
     <MESSAGE value="formatted main_circ" />
-    <option name="LAST_COMMIT_MESSAGE" value="formatted main_circ" />
+    <MESSAGE value="started cleanup for public repo" />
+    <option name="LAST_COMMIT_MESSAGE" value="started cleanup for public repo" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/fem_waveguide$main_circ.coverage" NAME="main_circ Coverage Results" MODIFIED="1711639347740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fem_waveguide$main_ridged_rect.coverage" NAME="main_ridged_rect Coverage Results" MODIFIED="1711639620932" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fem_waveguide$main_rect.coverage" NAME="main_rect Coverage Results" MODIFIED="1718028758094" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/fem_waveguide$main.coverage" NAME="main Coverage Results" MODIFIED="1718029039231" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/fem_waveguide$main.coverage" NAME="main Coverage Results" MODIFIED="1718031301107" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
