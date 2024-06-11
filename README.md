@@ -1,11 +1,12 @@
 # fem-waveguide
 
-A 2D Finite-Element field profile solver for waveguides of arbitrary cross-sections created ECE 61800 Project 2.
-Please reach out if you are interested in the project / course details or the report.
+A 2D Finite-Element field profile solver for a graduate CEM course offered at Purdue University. 
+At the request of the instructor, the course details and project report have been removed from this repository. 
+Please reach out if you are interested in the course details and project report.
 
 This codebase, as well as others from this class, are not designed to be user-friendly as they were only intended to be
 run by myself for the purpose of a class project. With that said however all code is reasonably documented to the
-standards outlined in ECE 61800.
+standards outlined in this course.
 
 ## Requirements
 
